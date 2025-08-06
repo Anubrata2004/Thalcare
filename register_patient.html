@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register Patient</title>
+  <style>
+   html, body {
+  height: auto;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #e3f2fd, #ffffff);
+  font-family: 'Segoe UI', sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+    form {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+      color: #1565c0;
+      margin-bottom: 24px;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+    }
+    button {
+      background: #1565c0;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+    button:hover {
+      background: #0d47a1;
+    }
+  </style>
+</head>
+<body>
+  <form method="post">
+    <h2>Patient Registration</h2>
+    <label for="name">Full Name</label>
+    <input type="text" name="name" placeholder="Full Name" required />
+    <label for="Email id">Full email id</label>
+    <input type="email" name="email" placeholder="Email" required />
+    <label for="Password"></label>
+    <input type="password" name="password" placeholder="Password" required />
+    <label for="phone number">ph no.</label>
+    <input type="tel" name="phone" placeholder="Phone Number" required />
+    <label for="Date of Birth">D.O.B</label>
+    <input type="date" name="dob" placeholder="Date of Birth" required />
+    <label for="Blood group">blood group</label>
+    <select name="blood_group" required>
+      <option value="">Select Blood Group</option>
+      <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+      <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+    </select>
+    <label for="Location">location</label>
+    <input type="text" name="location" placeholder="Location" required />
+    <label for="last blood required">Last blood required</label>
+    <input type="date" name="last_required" placeholder="Last Blood Required" required />
+    <label for="next blood required">Next blood required</label>
+    <input type="date" name="next_required" placeholder="Next Blood Required" required />
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>

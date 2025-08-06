@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Transfusion Prediction</title>
+<style>
+    * {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  max-width: 450px;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1a202c;
+  font-weight: 700;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #4a5568;
+}
+
+input[type="number"],
+select {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1.8px solid #cbd5e1;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus,
+select:focus {
+  border-color: #3182ce;
+  outline: none;
+}
+
+button {
+  margin-top: 2rem;
+  padding: 12px;
+  background: #3182ce;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background: #2c5282;
+}
+
+#result {
+  margin-top: 1.5rem;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  display: none;
+  user-select: none;
+}
+
+#result.low {
+  background: #bee3f8;
+  color: #2b6cb0;
+  border: 1px solid #90cdf4;
+}
+
+#result.moderate {
+  background: #faf089;
+  color: #975a16;
+  border: 1px solid #f6e05e;
+}
+
+#result.high {
+  background: #fed7d7;
+  color: #742a2a;
+  border: 1px solid #feb2b2;
+}
+
+#result.yes {
+  background: #fed7d7;
+  color: #742a2a;
+  border: 1px solid #feb2b2;
+}
+
+#result.no {
+  background: #bee3f8;
+  color: #2b6cb0;
+  border: 1px solid #90cdf4;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Blood Transfusion Needed Predictor</h1>
+  <form id="transfusionForm">
+    <label for="age">Age</label>
+    <input type="number" id="age" name="age" min="0" max="120" required />
+
+    <label for="blood_group">Blood Group</label>
+    <select id="blood_group" name="blood_group" required>
+      <option value="">Select</option>
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+      <option value="O+">O+</option>
+      <option value="O-">O-</option>
+    </select>
+
+    <label for="condition">Condition</label>
+    <select id="condition" name="condition" required>
+      <option value="">Select</option>
+      <option value="thalassemia minor">Thalassemia Minor</option>
+      <option value="thalassemia major">Thalassemia Major</option>
+    </select>
+
+    <label for="severity">Severity</label>
+    <select id="severity" name="severity" required>
+      <option value="">Select</option>
+      <option value="low">Low</option>
+      <option value="moderate">Moderate</option>
+      <option value="high">High</option>
+    </select>
+
+    <button type="submit">Predict Transfusion Need</button>
+  </form>
+
+  <div id="result"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

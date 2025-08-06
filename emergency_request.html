@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Emergency Blood Request</title>
+  <style>
+    body {
+      background: #f3f7fa;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px 40px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-shadow: inset 0 1px 3px #ddd;
+    }
+    button {
+      margin-top: 25px;
+      width: 100%;
+      background: #d63031;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #e84342;
+    }
+  </style>
+</head>
+<body>
+  <form method="POST" action="/submit_emergency">
+    <h2>Emergency Blood Request</h2>
+    
+    <label>Name</label>
+    <input type="text" name="name" required>
+
+    <label>Contact Number</label>
+    <input type="text" name="contact" required>
+
+    <label>Blood Group</label>
+    <select name="blood_group" required>
+      <option value="">Select</option>
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="O+">O+</option>
+      <option value="O-">O-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+    </select>
+
+    <label>Location</label>
+    <input type="text" name="location" required>
+
+    <label>Urgency Level</label>
+    <select name="urgency_level" required>
+      <option value="">Select</option>
+      <option value="Low">Low</option>
+      <option value="Moderate">Moderate</option>
+      <option value="High">High</option>
+      <option value="Critical">Critical</option>
+    </select>
+
+    <button type="submit">Submit Request</button>
+  </form>
+</body>
+</html>

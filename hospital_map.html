@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nearby Hospitals</title>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+    #sidebar {
+      width: 300px;
+      background: #f5f5f5;
+      padding: 15px;
+      overflow-y: auto;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    .hospital {
+      background: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    #map {
+      flex: 1;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+</head>
+<body>
+
+<div id="sidebar">
+  <h3>Nearby Hospitals</h3>
+  <div id="hospitalList"></div>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map').setView([22.5206, 88.4037], 13); // Ruby coordinates
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+  }).addTo(map);
+
+  fetch('/get_hospitals')
+    .then(res => res.json())
+    .then(hospitals => {
+      const listDiv = document.getElementById('hospitalList');
+      hospitals.forEach(h => {
+        const marker = L.marker([h.latitude, h.longitude]).addTo(map)
+          .bindPopup(`
+  <b>${h.name}</b><br>
+  Phone: ${h.phone}<br>
+  Distance: ${h.distance}<br>
+  Ambulance: ${h.ambulance_status}<br>
+  <button onclick="bookAmbulance('${h.id}', '${h.name}')">🚑 Book Ambulance</button>
+`);
+
+
+        const item = document.createElement('div');
+        item.className = 'hospital';
+        item.innerHTML = `<strong>${h.name}</strong><br>${h.phone}<br>${h.distance}<br>Ambulance: ${h.ambulance_status}`;
+        item.onclick = () => {
+          map.setView([h.latitude, h.longitude], 16);
+          marker.openPopup();
+        };
+        listDiv.appendChild(item);
+      });
+    });
+</script>
+<!-- Modal -->
+<div id="driverModal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
+ background:white; padding:20px; border:1px solid #ccc; border-radius:8px; z-index:1000; box-shadow:0 0 15px rgba(0,0,0,0.3); width:350px;">
+  <h3>Available Ambulance Drivers</h3>
+  <div id="driverList"></div>
+  <button onclick="closeModal()">Close</button>
+</div>
+
+<script>
+  function bookAmbulance(hospitalId, hospitalName) {
+    fetch(`/get_drivers/${hospitalId}`)
+      .then(res => res.json())
+      .then(data => {
+        const driverList = document.getElementById('driverList');
+        driverList.innerHTML = "";
+
+        if (data.drivers.length === 0) {
+          driverList.innerHTML = "<p><b>No drivers available currently.</b></p>";
+        } else {
+          data.drivers.forEach(d => {
+            driverList.innerHTML += `
+              <div style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                <b>Name:</b> ${d.name}<br>
+                <b>Phone:</b> ${d.phone}<br>
+                <b>Plate:</b> ${d.plate}
+              </div>
+            `;
+          });
+        }
+
+        document.getElementById('driverModal').style.display = 'block';
+      });
+  }
+
+  function closeModal() {
+    document.getElementById('driverModal').style.display = 'none';
+  }
+</script>
+<hr>
+<h3>🚑 Emergency Ambulance Booking</h3>
+<select id="hospitalSelect" style="padding: 10px; border-radius: 5px;">
+  <option value="">-- Select Hospital --</option>
+  <option value="H001">Ruby General Hospital</option>
+  <option value="H002">Desun Hospital</option>
+  <option value="H004">Fortis Hospital, Anandapur</option>
+</select>
+<button onclick="goToBookingPage()" style="margin-left: 10px; padding: 10px 20px; border-radius: 5px;">Book Ambulance</button>
+
+<script>
+  function goToBookingPage() {
+    const selected = document.getElementById('hospitalSelect').value;
+    if (selected) {
+      window.location.href = `/book_ambulance/${selected}`;
+    } else {
+      alert("Please select a hospital.");
+    }
+  }
+</script>
+<form action="/notify_donors" method="post">
+    <button type="submit" style="padding:10px; background:#e74c3c; color:white; border:none; border-radius:5px;">
+        🚨 Notify All Donors
+    </button>
+</form>
+</body>
+</html>

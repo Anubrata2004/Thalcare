@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register Hospital</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ede7f6, #ffffff);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      border-radius: 16px;
+      padding: 40px;
+      width: 420px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    h2 {
+      color: #6a1b9a;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #6a1b9a;
+      color: white;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4a148c;
+    }
+  </style>
+</head>
+<body>
+  <form method="post">
+    <h2>Hospital Registration</h2>
+    <input type="text" name="name" placeholder="Hospital Name" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <input type="text" name="license_id" placeholder="License ID" required />
+    <input type="text" name="location" placeholder="Location" required />
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>

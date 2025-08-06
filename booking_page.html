@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ambulance Booking</title>
+</head>
+<body style="font-family:sans-serif; padding:40px; background:#f7f7f7;">
+  <h2>🚨 Booking Ambulance for {{ hospital }}</h2>
+  {% if drivers %}
+    <ul>
+      {% for d in drivers %}
+        <li style="margin:15px 0; padding:10px; background:white; border-left:5px solid #007bff;">
+          <b>Driver:</b> {{ d[0] }}<br>
+          <b>Phone:</b> {{ d[1] }}<br>
+          <b>Ambulance:</b> {{ d[2] }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No drivers available right now.</p>
+  {% endif %}
+
+  <form action="/notify_donors" method="post">
+    <input type="hidden" name="hospital" value="{{ hospital }}">
+    <button type="submit" style="padding:10px 20px; background:green; color:white; border:none; border-radius:5px;">📧 Notify Matching Donors</button>
+  </form>
+
+  <button onclick="notifyDonors()" style="padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">
+  🚨 Notify All Donors
+</button>
+
+<p id="notify-msg" style="margin-top: 15px; font-weight: bold;"></p>
+
+<script>
+function notifyDonors() {
+    fetch('/notify_donors', { method: 'POST' })
+      .then(response => response.text())
+      .then(data => {
+          document.getElementById("notify-msg").innerText = data;
+      })
+      .catch(error => {
+          document.getElementById("notify-msg").innerText = "Failed to send emails.";
+      });
+}
+</script>
+<form action="/notify_donors" method="post">
+    <button type="submit" style="padding:10px; background:#e74c3c; color:white; border:none; border-radius:5px;">
+        🚨 Notify All Donors
+    </button>
+</form>
+</body>
+</html>

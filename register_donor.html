@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register Donor</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #e8f5e9, #ffffff);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      border-radius: 16px;
+      padding: 40px;
+      width: 420px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    h2 {
+      color: #2e7d32;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #2e7d32;
+      color: white;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1b5e20;
+    }
+  </style>
+</head>
+<body>
+  <form method="post">
+    <h2>Donor Registration</h2>
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <select name="blood_group" required>
+      <option value="">Select Blood Group</option>
+      <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+      <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+    </select>
+    <input type="date" name="last_donation" placeholder="Last Donation Date" required />
+    <select name="diseases" required>
+      <option value="">Any diseases?</option>
+      <option>None</option>
+      <option>Diabetes (controlled)</option>
+      <option>Hypertension (controlled)</option>
+      <option>Thalassemia Trait</option>
+      <option>Thyroid (stable)</option>
+      <option>Asthma (mild)</option>
+      <option>Hepatitis B (recovered)</option>
+      <option>Anemia</option>
+      <option>Other</option>
+    </select>
+    <label><input type="checkbox" name="availability" value="yes"> Available to donate</label>
+    <input type="text" name="location" placeholder="Location" required />
+    <input type="tel" name="phone" placeholder="Phone Number" required />
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Registration</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 80px auto;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        select:invalid {
+            color: #888;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Registration</h2>
+        <form method="POST" action="/register">
+            <label for="org_type">Select Organization Type:</label>
+            <select name="org_type" id="org_type" required>
+                <option value="" disabled selected>--Select--</option>
+                <option value="Hospital">Hospital</option>
+                <option value="Blood Bank">Blood Bank</option>
+                <option value="Medical College">Medical College</option>
+            </select>
+
+            <label for="contact">Contact Number:</label>
+            <input type="text" name="contact" id="contact" required placeholder="e.g. 9876543210">
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required placeholder="e.g. admin@example.com">
+
+            <input type="submit" value="Register">
+        </form>
+        <p class="note">Your Admin ID will be auto-generated on registration.</p>
+    </div>
+</body>
+</html>

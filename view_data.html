@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Data</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+    }
+    h2 {
+      color: #1e88e5;
+      margin-top: 40px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      font-size: 14px;
+      text-align: left;
+    }
+    th {
+      background-color: #e3f2fd;
+    }
+    tr:nth-child(even) {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <h1>ThalCare Records</h1>
+
+  <h2>Patients</h2>
+  <table>
+    <tr>
+      <th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>DOB</th><th>Blood Group</th><th>Location</th><th>Last Required</th><th>Next Required</th>
+    </tr>
+    {% for p in patients %}
+    <tr>
+      <td>{{ p[0] }}</td><td>{{ p[1] }}</td><td>{{ p[2] }}</td><td>{{ p[4] }}</td><td>{{ p[5] }}</td><td>{{ p[6] }}</td><td>{{ p[7] }}</td><td>{{ p[9] }}</td><td>{{ p[10] }}</td></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Donors</h2>
+  <table>
+    <tr>
+      <th>ID</th><th>Name</th><th>Email</th><th>Blood Group</th><th>Last Donation</th><th>Diseases</th><th>Available</th><th>Location</th><th>Phone</th>
+    </tr>
+    {% for d in donors %}
+    <tr>
+      <td>{{ d[0] }}</td><td>{{ d[1] }}</td><td>{{ d[2] }}</td><td>{{ d[4] }}</td><td>{{ d[5] }}</td><td>{{ d[6] }}</td><td>{{ d[7] }}</td><td>{{ d[9] }}</td><td>{{ d[10] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Hospitals</h2>
+  <table>
+    <tr>
+      <th>ID</th><th>Name</th><th>Email</th><th>License ID</th><th>Location</th>
+    </tr>
+    {% for h in hospitals %}
+    <tr>
+      <td>{{ h[0] }}</td><td>{{ h[1] }}</td><td>{{ h[2] }}</td><td>{{ h[4] }}</td><td>{{ h[6] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
